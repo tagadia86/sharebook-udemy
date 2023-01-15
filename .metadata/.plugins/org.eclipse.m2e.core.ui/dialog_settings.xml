@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="C:\Users\beugl\Documents\DEVELOPPEMENT\LIVRETROC_DAWAN\BookExchangeApp-develop\BookExchangeApp-develop\backend"/>
+			<item value="C:\Users\beugl\Documents\DEVELOPPEMENT\JAVA\DAWAN\PROJET_LIVRES\BookExchangeApp-develop\backend"/>
+			<item value="C:\Users\beugl\Documents\DEVELOPPEMENT\JAVA\SPRING\HR-Association-master\api"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+</section>

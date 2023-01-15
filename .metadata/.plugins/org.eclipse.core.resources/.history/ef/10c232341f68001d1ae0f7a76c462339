@@ -1,0 +1,5 @@
+package com.udemy.demo.configuration;
+
+public class MyUserDetailService {
+
+}

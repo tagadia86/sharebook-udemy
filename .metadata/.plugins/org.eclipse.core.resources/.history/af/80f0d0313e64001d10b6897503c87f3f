@@ -1,0 +1,164 @@
+package fr.dawan.BOOKPROJECT;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
+import fr.dawan.BOOKPROJECT.entities.Author;
+import fr.dawan.BOOKPROJECT.entities.Book;
+import fr.dawan.BOOKPROJECT.entities.Category;
+import fr.dawan.BOOKPROJECT.entities.User;
+import fr.dawan.BOOKPROJECT.enums.Availability;
+import fr.dawan.BOOKPROJECT.enums.BookEtat;
+import fr.dawan.BOOKPROJECT.enums.Language;
+import fr.dawan.BOOKPROJECT.enums.UserType;
+import fr.dawan.BOOKPROJECT.repositories.AuthorRepository;
+import fr.dawan.BOOKPROJECT.repositories.BookRepository;
+import fr.dawan.BOOKPROJECT.repositories.CategoryRepository;
+import fr.dawan.BOOKPROJECT.repositories.UserRepository;
+
+@Component
+
+public class RepositoryRunner implements ApplicationRunner {
+	@Autowired
+	BookRepository bookRepository;
+	@Autowired
+	AuthorRepository authorRepository;
+	@Autowired
+	CategoryRepository categoryRepository;
+
+	@Autowired 
+	UserRepository userRepository;
+	@SuppressWarnings("null")
+	@Override
+	public void run(ApplicationArguments args) throws Exception {
+		
+		
+		User user = new User("Thierno_15", "Thierno", "Tagaddia", "HelloFrom00","thierno015@gmail.com", UserType.USER);
+		
+		userRepository.saveAndFlush(user);
+		
+		
+		// CREATION DES AUTEURS DU LIVRE
+//		
+		Author author1 = new Author();
+		author1.setFirstname("toto");
+		author1.setLastname("ba");
+		Author author2 = new Author();
+		author2.setFirstname("mariama");
+		author2.setLastname("sow");
+		ArrayList<Author> authors = new ArrayList<Author>();
+		authors.add(author1);
+		authors.add(author2);
+		authorRepository.saveAll(authors);/****************************************************************/
+		
+		
+		//		// CREATION DE LA CATEGORIE
+		Category cat1 = new Category();
+		Category cat2 = new Category();
+		cat1.setCategoryName("java");
+		cat2.setCategoryName("medecine");
+		ArrayList<Category> categories = new ArrayList<Category>();
+		categories.add(cat1);
+		categories.add(cat2);
+		categoryRepository.saveAll(categories);/******************************************************************************************************/
+//		
+//		// CREATION DU LIVRE
+		Book book1 = new Book();
+		book1.setAuthors(authors);
+		book1.setCategories(categories);
+		book1.setAvailability(Availability.AVAILABLE);
+		book1.setBookEtat(BookEtat.MOYEN);
+		book1.setDescription("Lorem ipsum dolor sit amet consectetur, adipisicing elit.");
+		book1.setISBN("9782035887351");
+		book1.setLanguage(Language.PORTUGAIS);
+		book1.setPageNumber(295);
+//		book1.setPicture(null);
+		book1.setPointBook(1);
+		book1.setPrice(5.99);
+		book1.setPublishedDate(LocalDate.of(2020, 10, 20));
+		book1.setPublishingHouse("LAROUSSE");
+		book1.setTitle("la vache folle");
+		book1.setWeight(40);
+//		//************** DEUXIEME LIVRE 
+		Book book2 = new Book();
+		book2.setAuthors(authors);
+		book2.setCategories(categories);
+		book2.setAvailability(Availability.AVAILABLE);
+		book2.setBookEtat(BookEtat.MOYEN);
+		book2.setDescription("Lorem ipsum dolor sit amet consectetur, adipisicing elit.");
+		book2.setISBN("9782035887351");
+		book2.setLanguage(Language.PORTUGAIS);
+		book2.setPageNumber(295);
+		//book2.setPicture(null);
+		book1.setTitle("Un test d'ajout de liste de livres");
+		bookRepository.save(book2);/********************************************************************************************/
+//		
+//		//*********************** Appel pour ajout 
+//		
+		List<Book> books = new ArrayList<>();
+//		
+		books.add(book2);
+		books.add(book1);
+//		
+		bookRepository.saveAllAndFlush(books);
+		
+		
+		System.out.println("################################" + " " + bookRepository.findById(1).getISBN());
+		// SUPPRESSION PAR L'ID
+		//bookRepository.deleteById(1);/************************************************************************************************/
+		
+		// AFFICHAGE DE TOUS LES LIVRES
+		bookRepository.findAll();
+		List<Book> lstOfAllBooks = null;
+		lstOfAllBooks = bookRepository.findAll();
+		for (Book book : lstOfAllBooks) {System.out.println("Livres trouvé" + " " + book.getTitle());}*/
+		
+		//System.out.println(book1);
+		
+		// RECHERCHER LES AUTEURS EN AYANT LA CATEGORIE
+		/*List<Author> lstAuthorsByBookId = null;
+		lstAuthorsByBookId = authorRepository.findByBookId(5);
+		for (Author author : lstAuthorsByBookId) {System.out.println("Auteurs trouvés l'ID du livre" + " " + author.getFirstname());}*/
+		
+		//RECHERCHER UN LIVRE PAR LE PRENOM DE L'AUTEUR
+		/*List<Book> lstBookByAuthorFirstName = null;
+		lstBookByAuthorFirstName = bookRepository.findByAuthorFirstName("balla");
+		for (Book book : lstBookByAuthorFirstName) {System.out.println("Livres trouvés par le prénom de l'auteur" + " " + book.getTitle());}*/
+		
+		//RECHERCHER UN LIVRE PAR LE NOM DE L'AUTEUR
+		/*List<Book> lstBookByAuthorLastName = null;
+		lstBookByAuthorLastName = bookRepository.findByAuthorLastName("diop");
+		for (Book book : lstBookByAuthorLastName) {System.out.println("Livres trouvés par le nom de l'auteur" + " " + book.getTitle());}*/
+		
+		//RECHERCHER DES LIVRES PAR CATEGORIE
+		/*List<Book> lstBookByCategory = null;
+		lstBookByCategory = bookRepository.findBookByCategoryName("geographie");
+		for (Book book : lstBookByCategory) {System.out.println("Livres trouvés dans cette catégorie" + " " + book.getTitle());}*/
+		
+		
+		
+
+		//System.out.println("**********FIN**********");
+
+		
+		
+		// CREATION DES UTILISATEURS
+		
+			
+	
+//		User user = new User("haifa04","Haifa","Guessmi","utilisat04","Haifa04@gmail.com",UserType.USER);
+//		userRepository.saveAndFlush(user);
+		/****************************************************************/
+				
+		
+		
+		
+
+	}
+
+}
+
